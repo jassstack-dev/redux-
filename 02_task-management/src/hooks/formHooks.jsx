@@ -20,11 +20,31 @@ export const useFormHook = () => {
 
   };
 
+
+  const task = useSelector((store)=> store.task.task)
+    const deletedTask = useSelector((store)=> store.task.deletedTasks)
+    
+    const completedTask = task.filter((val)=>{
+        return val.status === "completed"
+    })
+    const PendingTask = task.filter((val)=>{
+        return val.status === "pending"
+    })
+
+    const recentTask = [...task].sort((a,b)=>new Date(b.id)- new Date(a.id)).slice(0,5)
+    console.log(recentTask)
+
+
   return {
     register,
     reset,
     handleSubmit,
     formSubmit,
     tasks,
+    recentTask,
+    completedTask,
+    PendingTask,
+    deletedTask,
+    task
   };
 };

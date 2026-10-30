@@ -1,10 +1,10 @@
 import React from 'react'
 import { useFormHook } from '../hooks/formHooks'
-import { useDispatch, useSelector } from 'react-redux'
+
 
 const AddTask = () => {
 
-    const {register, handleSubmit,reset, formSubmit,tasks} = useFormHook()
+    const {register, handleSubmit, formSubmit,tasks} = useFormHook()
    
     
 
