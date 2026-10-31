@@ -11,12 +11,15 @@ export const useFormHook = () => {
     console.log(tasks);
   }, [tasks]);
 
-  const { register, reset, handleSubmit, formState = { errors } } = useForm();
+  const { register, reset, handleSubmit, formState : { errors } } = useForm();
 
   const formSubmit = (data) => {
     const arr = { ...data, id: new Date().toISOString() };
     dispatch(addTask(arr));
+    
+   alert('added successfully')
     reset()
+
 
   };
 
@@ -45,6 +48,7 @@ export const useFormHook = () => {
     completedTask,
     PendingTask,
     deletedTask,
-    task
+    task,
+    formState : { errors }
   };
 };

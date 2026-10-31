@@ -4,7 +4,8 @@ import { useFormHook } from '../hooks/formHooks'
 
 const AddTask = () => {
 
-    const {register, handleSubmit, formSubmit,tasks} = useFormHook()
+    const {register, handleSubmit, formSubmit,formState :{ errors } } = useFormHook()
+
    
     
 
@@ -19,11 +20,26 @@ const AddTask = () => {
             Title
           </label>
           <input
-          {...register('task')}
+          {...register("task", {
+    required: "Task is required",
+    minLength: {
+      value: 3,
+      message: "Task must be at least 3 characters"
+    },
+    maxLength: {
+      value: 50,
+      message: "Task cannot exceed 50 characters"
+    }
+  })}
             type="text"
             placeholder="Enter task title"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           />
+          {errors.task && (
+  <p className="text-red-500">
+    {errors.task.message}
+  </p>
+)}
         </div>
 
         {/* Description */}
@@ -32,11 +48,26 @@ const AddTask = () => {
             Description
           </label>
           <textarea
-          {...register('description')}
+          {...register("description", {
+    required: "description is required",
+    minLength: {
+      value: 3,
+      message: "Task must be at least 3 characters"
+    },
+    maxLength: {
+      value: 50,
+      message: "Task cannot exceed 50 characters"
+    }
+  })}
             rows={3}
             placeholder="Enter task description"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
           />
+          {errors.description && (
+  <p className="text-red-500">
+    {errors.description.message}
+  </p>
+)}
         </div>
 
         {/* Priority */}

@@ -1,5 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+
 
 const savedData = JSON.parse(localStorage.getItem("tasks")) || [];
 const deletedTask = JSON.parse(localStorage.getItem("deletedTask")) || [];
@@ -13,6 +13,7 @@ const taskSlice = createSlice({
   reducers: {
     addTask: (state, action) => {
       state.task.push(action.payload);
+     
     },
     deletetask: (state, action) => {
 
